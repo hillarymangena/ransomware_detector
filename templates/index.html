@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ransomware Detection</title>
+    <style>
+        body {
+            background-color: #e6f3ff; /* Light blue theme */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #1e90ff; /* Dodger blue for header */
+            text-align: center;
+        }
+        form, div {
+            max-width: 600px; /* Wider boxes */
+            margin: 20px auto; /* Better spacing */
+            padding: 20px;
+            background-color: #ffffff;
+            border: 2px solid #1e90ff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label, input, input[type="submit"] {
+            display: block;
+            width: 90%; /* Wider input fields */
+            margin: 10px 0;
+            padding: 10px;
+        }
+        h3 {
+            color: #ff4500; /* Orange-red for emphasis */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ransomware Detection via System Call Analysis</h1>
+    <form method="POST">
+        <label>System Call Sequence (comma-separated, e.g., open,write,close - NO SPACES):</label><br>
+        <input type="text" name="sequence" value="{{ sample_sequence or '' }}" required><br>
+        <input type="submit" name="generate" value="Generate Random Sample Sequence and Check"><br>
+        <input type="submit" value="Check">
+    </form>
+    {% if prediction %}
+        <div>
+            <h3>{{ prediction }}</h3>
+            {% if bottom_line %}
+                <h3>{{ bottom_line }}</h3>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html>
